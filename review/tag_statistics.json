@@ -1,0 +1,756 @@
+{
+  "cs": {
+    "cs-10657-01-13.conll": {
+      "PER": 33,
+      "ORG": 10,
+      "LOC": 37,
+      "CAMP": 0,
+      "GHETTO": 8,
+      "DATE": 18,
+      "MISC": 39,
+      "TOTAL": 145
+    },
+    "cs-10657-02-13.conll": {
+      "PER": 35,
+      "ORG": 8,
+      "LOC": 11,
+      "CAMP": 10,
+      "GHETTO": 7,
+      "DATE": 4,
+      "MISC": 37,
+      "TOTAL": 112
+    },
+    "cs-10657-03-13.conll": {
+      "PER": 28,
+      "ORG": 6,
+      "LOC": 33,
+      "CAMP": 3,
+      "GHETTO": 1,
+      "DATE": 8,
+      "MISC": 32,
+      "TOTAL": 111
+    },
+    "cs-10657-04-13.conll": {
+      "PER": 19,
+      "ORG": 16,
+      "LOC": 77,
+      "CAMP": 1,
+      "GHETTO": 2,
+      "DATE": 9,
+      "MISC": 53,
+      "TOTAL": 177
+    },
+    "cs-RG-50.675.0038-01-13.conll": {
+      "PER": 31,
+      "ORG": 7,
+      "LOC": 18,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 3,
+      "MISC": 38,
+      "TOTAL": 97
+    },
+    "cs-RG-50.675.0040-01-13.conll": {
+      "PER": 54,
+      "ORG": 1,
+      "LOC": 39,
+      "CAMP": 4,
+      "GHETTO": 0,
+      "DATE": 1,
+      "MISC": 76,
+      "TOTAL": 175
+    },
+    "cs-RG-50.675.0041-01-13.conll": {
+      "PER": 35,
+      "ORG": 2,
+      "LOC": 48,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 1,
+      "MISC": 31,
+      "TOTAL": 117
+    }
+  },
+  "da": {
+    "da-35282-01-14.conll": {
+      "PER": 17,
+      "ORG": 8,
+      "LOC": 31,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 6,
+      "MISC": 52,
+      "TOTAL": 114
+    },
+    "da-35282-02-14.conll": {
+      "PER": 1,
+      "ORG": 36,
+      "LOC": 21,
+      "CAMP": 1,
+      "GHETTO": 1,
+      "DATE": 13,
+      "MISC": 32,
+      "TOTAL": 105
+    },
+    "da-35282-03-14.conll": {
+      "PER": 1,
+      "ORG": 7,
+      "LOC": 5,
+      "CAMP": 19,
+      "GHETTO": 4,
+      "DATE": 0,
+      "MISC": 16,
+      "TOTAL": 52
+    },
+    "da-35282-04-14.conll": {
+      "PER": 1,
+      "ORG": 8,
+      "LOC": 1,
+      "CAMP": 50,
+      "GHETTO": 0,
+      "DATE": 0,
+      "MISC": 9,
+      "TOTAL": 69
+    },
+    "da-35282-05-14.conll": {
+      "PER": 1,
+      "ORG": 18,
+      "LOC": 16,
+      "CAMP": 19,
+      "GHETTO": 0,
+      "DATE": 5,
+      "MISC": 35,
+      "TOTAL": 94
+    },
+    "da-35282-06-14.conll": {
+      "PER": 3,
+      "ORG": 6,
+      "LOC": 39,
+      "CAMP": 13,
+      "GHETTO": 2,
+      "DATE": 3,
+      "MISC": 15,
+      "TOTAL": 81
+    }
+  },
+  "de": {
+    "de-35104-01-1.conll": {
+      "PER": 12,
+      "ORG": 8,
+      "LOC": 61,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 11,
+      "MISC": 13,
+      "TOTAL": 105
+    },
+    "de-35104-02-1.conll": {
+      "PER": 9,
+      "ORG": 4,
+      "LOC": 14,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 3,
+      "MISC": 113,
+      "TOTAL": 143
+    },
+    "de-35104-03-1.conll": {
+      "PER": 4,
+      "ORG": 20,
+      "LOC": 39,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 14,
+      "MISC": 46,
+      "TOTAL": 123
+    },
+    "de-35104-04-1.conll": {
+      "PER": 1,
+      "ORG": 14,
+      "LOC": 26,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 9,
+      "MISC": 45,
+      "TOTAL": 95
+    },
+    "de-35104-05-1.conll": {
+      "PER": 17,
+      "ORG": 14,
+      "LOC": 17,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 2,
+      "MISC": 32,
+      "TOTAL": 82
+    },
+    "de-35104-06-1.conll": {
+      "PER": 26,
+      "ORG": 19,
+      "LOC": 24,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 4,
+      "MISC": 26,
+      "TOTAL": 99
+    },
+    "de-35104-07-1.conll": {
+      "PER": 39,
+      "ORG": 21,
+      "LOC": 1,
+      "CAMP": 3,
+      "GHETTO": 0,
+      "DATE": 10,
+      "MISC": 12,
+      "TOTAL": 86
+    },
+    "de-35104-08-1.conll": {
+      "PER": 37,
+      "ORG": 10,
+      "LOC": 2,
+      "CAMP": 3,
+      "GHETTO": 0,
+      "DATE": 4,
+      "MISC": 20,
+      "TOTAL": 76
+    },
+    "de-35104-09-1.conll": {
+      "PER": 20,
+      "ORG": 12,
+      "LOC": 6,
+      "CAMP": 2,
+      "GHETTO": 0,
+      "DATE": 1,
+      "MISC": 18,
+      "TOTAL": 59
+    },
+    "de-35104-10-1.conll": {
+      "PER": 8,
+      "ORG": 25,
+      "LOC": 29,
+      "CAMP": 27,
+      "GHETTO": 0,
+      "DATE": 3,
+      "MISC": 19,
+      "TOTAL": 111
+    },
+    "de-35104-11-1.conll": {
+      "PER": 11,
+      "ORG": 10,
+      "LOC": 3,
+      "CAMP": 15,
+      "GHETTO": 0,
+      "DATE": 8,
+      "MISC": 14,
+      "TOTAL": 61
+    },
+    "de-35104-12-1.conll": {
+      "PER": 18,
+      "ORG": 15,
+      "LOC": 7,
+      "CAMP": 7,
+      "GHETTO": 0,
+      "DATE": 3,
+      "MISC": 37,
+      "TOTAL": 87
+    },
+    "de-35104-13-1.conll": {
+      "PER": 22,
+      "ORG": 13,
+      "LOC": 53,
+      "CAMP": 5,
+      "GHETTO": 0,
+      "DATE": 6,
+      "MISC": 12,
+      "TOTAL": 111
+    },
+    "de-35104-14-1.conll": {
+      "PER": 18,
+      "ORG": 25,
+      "LOC": 56,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 18,
+      "MISC": 41,
+      "TOTAL": 158
+    },
+    "de-35104-15-1.conll": {
+      "PER": 54,
+      "ORG": 21,
+      "LOC": 35,
+      "CAMP": 2,
+      "GHETTO": 0,
+      "DATE": 10,
+      "MISC": 38,
+      "TOTAL": 160
+    },
+    "de-35104-16-1.conll": {
+      "PER": 65,
+      "ORG": 18,
+      "LOC": 34,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 7,
+      "MISC": 28,
+      "TOTAL": 152
+    },
+    "de-35104-17-1.conll": {
+      "PER": 55,
+      "ORG": 32,
+      "LOC": 54,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 9,
+      "MISC": 49,
+      "TOTAL": 199
+    },
+    "de-35104-18-1.conll": {
+      "PER": 44,
+      "ORG": 17,
+      "LOC": 50,
+      "CAMP": 19,
+      "GHETTO": 0,
+      "DATE": 19,
+      "MISC": 16,
+      "TOTAL": 165
+    },
+    "de-35104-19-1.conll": {
+      "PER": 49,
+      "ORG": 26,
+      "LOC": 56,
+      "CAMP": 18,
+      "GHETTO": 0,
+      "DATE": 13,
+      "MISC": 48,
+      "TOTAL": 210
+    },
+    "de-35104-20-1.conll": {
+      "PER": 39,
+      "ORG": 3,
+      "LOC": 46,
+      "CAMP": 20,
+      "GHETTO": 0,
+      "DATE": 11,
+      "MISC": 26,
+      "TOTAL": 145
+    },
+    "de-35104-21-1.conll": {
+      "PER": 10,
+      "ORG": 15,
+      "LOC": 25,
+      "CAMP": 2,
+      "GHETTO": 0,
+      "DATE": 4,
+      "MISC": 42,
+      "TOTAL": 98
+    }
+  },
+  "en": {
+    "en-29950-01-13.conll": {
+      "PER": 31,
+      "ORG": 4,
+      "LOC": 66,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 12,
+      "MISC": 29,
+      "TOTAL": 142
+    },
+    "en-29950-02-13.conll": {
+      "PER": 11,
+      "ORG": 8,
+      "LOC": 31,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 13,
+      "MISC": 34,
+      "TOTAL": 97
+    },
+    "en-29950-03-13.conll": {
+      "PER": 9,
+      "ORG": 1,
+      "LOC": 34,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 1,
+      "MISC": 68,
+      "TOTAL": 113
+    },
+    "en-29950-04-13.conll": {
+      "PER": 7,
+      "ORG": 0,
+      "LOC": 23,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 2,
+      "MISC": 75,
+      "TOTAL": 107
+    },
+    "en-29950-05-13.conll": {
+      "PER": 16,
+      "ORG": 1,
+      "LOC": 6,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 0,
+      "MISC": 42,
+      "TOTAL": 65
+    },
+    "en-29950-06-13.conll": {
+      "PER": 25,
+      "ORG": 15,
+      "LOC": 20,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 7,
+      "MISC": 66,
+      "TOTAL": 133
+    },
+    "en-29950-07-13.conll": {
+      "PER": 57,
+      "ORG": 26,
+      "LOC": 61,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 3,
+      "MISC": 119,
+      "TOTAL": 266
+    },
+    "en-29950-08-13.conll": {
+      "PER": 40,
+      "ORG": 41,
+      "LOC": 67,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 17,
+      "MISC": 107,
+      "TOTAL": 272
+    },
+    "en-29950-09-13.conll": {
+      "PER": 7,
+      "ORG": 18,
+      "LOC": 46,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 6,
+      "MISC": 121,
+      "TOTAL": 198
+    },
+    "en-29950-10-13.conll": {
+      "PER": 21,
+      "ORG": 13,
+      "LOC": 31,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 9,
+      "MISC": 41,
+      "TOTAL": 115
+    },
+    "en-29950-11-13.conll": {
+      "PER": 6,
+      "ORG": 8,
+      "LOC": 71,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 5,
+      "MISC": 26,
+      "TOTAL": 116
+    },
+    "en-29950-12-13.conll": {
+      "PER": 17,
+      "ORG": 14,
+      "LOC": 90,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 10,
+      "MISC": 43,
+      "TOTAL": 174
+    },
+    "en-29950-13-13.conll": {
+      "PER": 38,
+      "ORG": 17,
+      "LOC": 10,
+      "CAMP": 6,
+      "GHETTO": 0,
+      "DATE": 1,
+      "MISC": 55,
+      "TOTAL": 127
+    },
+    "en-29950-14-13.conll": {
+      "PER": 43,
+      "ORG": 18,
+      "LOC": 32,
+      "CAMP": 6,
+      "GHETTO": 0,
+      "DATE": 8,
+      "MISC": 53,
+      "TOTAL": 160
+    },
+    "en-29950-15-13.conll": {
+      "PER": 17,
+      "ORG": 15,
+      "LOC": 54,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 5,
+      "MISC": 60,
+      "TOTAL": 151
+    },
+    "en-29950-16-13.conll": {
+      "PER": 19,
+      "ORG": 18,
+      "LOC": 57,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 13,
+      "MISC": 71,
+      "TOTAL": 178
+    },
+    "en-29950-17-13.conll": {
+      "PER": 28,
+      "ORG": 53,
+      "LOC": 27,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 5,
+      "MISC": 71,
+      "TOTAL": 184
+    },
+    "en-29950-18-13.conll": {
+      "PER": 34,
+      "ORG": 13,
+      "LOC": 19,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 5,
+      "MISC": 40,
+      "TOTAL": 111
+    },
+    "en-29950-19-13.conll": {
+      "PER": 58,
+      "ORG": 23,
+      "LOC": 10,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 9,
+      "MISC": 3,
+      "TOTAL": 103
+    },
+    "en-29950-20-13.conll": {
+      "PER": 54,
+      "ORG": 36,
+      "LOC": 45,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 8,
+      "MISC": 25,
+      "TOTAL": 168
+    },
+    "en-29950-21-13.conll": {
+      "PER": 21,
+      "ORG": 37,
+      "LOC": 52,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 12,
+      "MISC": 70,
+      "TOTAL": 192
+    },
+    "en-29950-22-13.conll": {
+      "PER": 62,
+      "ORG": 2,
+      "LOC": 27,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 19,
+      "MISC": 11,
+      "TOTAL": 121
+    }
+  },
+  "hu": {
+    "hu-50346-01-3.conll": {
+      "PER": 46,
+      "ORG": 19,
+      "LOC": 54,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 15,
+      "MISC": 91,
+      "TOTAL": 225
+    },
+    "hu-50346-02-3.conll": {
+      "PER": 10,
+      "ORG": 8,
+      "LOC": 39,
+      "CAMP": 8,
+      "GHETTO": 0,
+      "DATE": 7,
+      "MISC": 62,
+      "TOTAL": 134
+    },
+    "hu-50346-03-3.conll": {
+      "PER": 28,
+      "ORG": 3,
+      "LOC": 23,
+      "CAMP": 11,
+      "GHETTO": 0,
+      "DATE": 4,
+      "MISC": 32,
+      "TOTAL": 101
+    },
+    "hu-50346-04-3.conll": {
+      "PER": 48,
+      "ORG": 6,
+      "LOC": 25,
+      "CAMP": 4,
+      "GHETTO": 0,
+      "DATE": 4,
+      "MISC": 36,
+      "TOTAL": 123
+    },
+    "hu-50346-05-3.conll": {
+      "PER": 14,
+      "ORG": 5,
+      "LOC": 67,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 11,
+      "MISC": 31,
+      "TOTAL": 128
+    },
+    "hu-50346-06-3.conll": {
+      "PER": 12,
+      "ORG": 8,
+      "LOC": 60,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 14,
+      "MISC": 56,
+      "TOTAL": 150
+    },
+    "hu-50346-07-3.conll": {
+      "PER": 47,
+      "ORG": 9,
+      "LOC": 43,
+      "CAMP": 4,
+      "GHETTO": 0,
+      "DATE": 15,
+      "MISC": 19,
+      "TOTAL": 137
+    }
+  },
+  "nl": {
+    "nl-7321-01-5.conll": {
+      "PER": 28,
+      "ORG": 23,
+      "LOC": 75,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 30,
+      "MISC": 38,
+      "TOTAL": 194
+    },
+    "nl-7321-02-5.conll": {
+      "PER": 60,
+      "ORG": 35,
+      "LOC": 82,
+      "CAMP": 12,
+      "GHETTO": 2,
+      "DATE": 32,
+      "MISC": 63,
+      "TOTAL": 286
+    },
+    "nl-7321-03-5.conll": {
+      "PER": 29,
+      "ORG": 15,
+      "LOC": 36,
+      "CAMP": 38,
+      "GHETTO": 0,
+      "DATE": 21,
+      "MISC": 37,
+      "TOTAL": 176
+    },
+    "nl-7321-04-5.conll": {
+      "PER": 31,
+      "ORG": 27,
+      "LOC": 86,
+      "CAMP": 26,
+      "GHETTO": 0,
+      "DATE": 29,
+      "MISC": 26,
+      "TOTAL": 225
+    },
+    "nl-7321-05-5.conll": {
+      "PER": 9,
+      "ORG": 19,
+      "LOC": 59,
+      "CAMP": 4,
+      "GHETTO": 0,
+      "DATE": 32,
+      "MISC": 24,
+      "TOTAL": 147
+    }
+  },
+  "pl": {
+    "pl-9014-01-15.conll": {
+      "PER": 62,
+      "ORG": 3,
+      "LOC": 20,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 1,
+      "MISC": 8,
+      "TOTAL": 94
+    },
+    "pl-9014-02-15.conll": {
+      "PER": 27,
+      "ORG": 20,
+      "LOC": 18,
+      "CAMP": 0,
+      "GHETTO": 8,
+      "DATE": 5,
+      "MISC": 11,
+      "TOTAL": 89
+    },
+    "pl-9014-03-15.conll": {
+      "PER": 25,
+      "ORG": 4,
+      "LOC": 5,
+      "CAMP": 7,
+      "GHETTO": 6,
+      "DATE": 1,
+      "MISC": 0,
+      "TOTAL": 48
+    },
+    "pl-9014-04-15.conll": {
+      "PER": 17,
+      "ORG": 12,
+      "LOC": 1,
+      "CAMP": 15,
+      "GHETTO": 0,
+      "DATE": 2,
+      "MISC": 3,
+      "TOTAL": 50
+    },
+    "pl-9014-05-15.conll": {
+      "PER": 17,
+      "ORG": 20,
+      "LOC": 5,
+      "CAMP": 1,
+      "GHETTO": 1,
+      "DATE": 2,
+      "MISC": 24,
+      "TOTAL": 70
+    },
+    "pl-9014-06-15.conll": {
+      "PER": 39,
+      "ORG": 17,
+      "LOC": 44,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 16,
+      "MISC": 11,
+      "TOTAL": 127
+    }
+  }
+}
