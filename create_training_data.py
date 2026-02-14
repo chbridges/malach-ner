@@ -13,7 +13,7 @@ dataset = {"ids": {"train": {}, "test": {}}, "data": {"train": {}, "test": {}}}
 with (data_dir / 'test_ids.txt').open() as f:
     test_ids = { line.strip() for line in f }
 
-for file in sorted((data_dir / 'conll_all').iterdir()):
+for file in sorted((data_dir / 'labelstudio_conll').iterdir()):
     filename = file.stem
     language = filename[:2]
     
@@ -34,7 +34,7 @@ for file in sorted((data_dir / 'conll_all').iterdir()):
 
 print(json.dumps(dataset["ids"], indent=2))
 
-dataset_dir = data_dir / "dataset"
+dataset_dir = data_dir / "training_data"
 dataset_dir.mkdir(exist_ok=True)
 
 for split, data in dataset["data"].items():
