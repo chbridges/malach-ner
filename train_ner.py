@@ -19,7 +19,33 @@ from transformers import (
 )
 from datasets import Dataset, DatasetDict
 import seqeval
-import tqdm
+
+
+EHRI = Path("./ehri/")
+MALACH = Path("./review/")
+BOTH = [EHRI, MALACH]
+
+MODEL_MAP = {
+    "ehri": "ehri-ner/xlm-roberta-large-ehri-ner-all",
+    "malach": "FacebookAI/xlm-roberta-large",
+    }
+
+EXPERIMENTS = {
+    "ehri": {
+        "frozen_ehri": {"train_dir": None, "test_dir": EHRI, "person_tag": "PERS", "has_misc": False},
+        "frozen_malach": {"train_dir": None, "test_dir": MALACH, "person_tag": "PERS", "has_misc": False},
+        "finetune_ehri": {"train_dir": MALACH, "test_dir": EHRI, "person_tag": "PERS", "has_misc": False},
+        "finetune_malach": {"train_dir": MALACH, "test_dir": MALACH, "person_tag": "PERS", "has_misc": False},
+    },
+    "malach": {
+        "ehri_ehri": {"train_dir": EHRI, "test_dir": EHRI, "person_tag": "PERS", "has_misc": False},
+        "ehri_malach": {"train_dir": EHRI, "test_dir": MALACH, "person_tag": "PER", "has_misc": False},
+        "malach_ehri": {"train_dir": MALACH, "test_dir": EHRI, "person_tag": "PERS", "has_misc": False},
+        "malach_malach": {"train_dir": MALACH, "test_dir": MALACH, "person_tag": "PER", "has_misc": True},
+        "both_ehri": {"train_dir": BOTH, "test_dir": EHRI, "person_tag": "PERS", "has_misc": False},
+        "both_malach": {"train_dir": BOTH, "test_dir": MALACH, "person_tag": "PER", "has_misc": True},
+    },
+}
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -28,21 +54,17 @@ logger = logging.getLogger(__name__)
 # Configuration
 def parse_args():
     parser = argparse.ArgumentParser(description="Train XLM-RoBERTa for NER")
-    parser.add_argument("--model_name", type=str, default="xlm-roberta-large", help="Pretrained model name")
-    parser.add_argument("--data_dir", type=str, default="./review", help="Directory with CONLL files")
-    parser.add_argument("--output_dir", type=str, default="./xlm_roberta_ner_model", help="Directory to save model and outputs")
+    parser.add_argument("--model_name", type=str, choices=MODEL_MAP.keys(), help="Pretrained model shortcut")
+    parser.add_argument("--output_dir", type=str, default="./models", help="Directory to save model and outputs")
     parser.add_argument("--max_length", type=int, default=512, help="Max sequence length")
-    parser.add_argument("--batch_size", type=int, default=8, help="Batch size for training and evaluation")
+    parser.add_argument("--batch_size", type=int, default=16, help="Batch size for training and evaluation")
     parser.add_argument("--epochs", type=int, default=3, help="Number of training epochs")
-    parser.add_argument("--learning_rate", type=float, default=2e-5, help="Learning rate")
-    parser.add_argument("--warmup_steps", type=int, default=500, help="Number of warmup steps")
-    parser.add_argument("--weight_decay", type=float, default=0.01, help="Weight decay")
+    parser.add_argument("--learning_rate", type=float, default=3e-5, help="Learning rate")
     parser.add_argument("--train_ratio", type=float, default=0.8, help="Ratio of data to use for training")
-    parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility")
     return parser.parse_args()
 
 
-def read_conll_file(file_path: str) -> List[tuple[list[str], list[str]]]:
+def read_conll_file(file_path: str, person_tag: str, has_misc: bool) -> list[tuple[list[str], list[str]]]:
     """Read CONLL format file and return list of (tokens, tags) tuples."""
     sentences = []
     tokens = []
@@ -61,6 +83,15 @@ def read_conll_file(file_path: str) -> List[tuple[list[str], list[str]]]:
                 if len(parts) >= 2:
                     token = parts[0]
                     tag = parts[1]
+
+                    # map between EHRI-NER and MalachNER
+                    if tag.endswith("MISC") and not has_misc:
+                        tag = "O"
+                    elif tag.endswith("PER") and person_tag == "PERS":
+                        tag = tag.replace("PER", "PERS")
+                    elif tag.endswith("PERS") and person_tag == "PER":
+                        tag = tag.replace("PERS", "PER")
+
                     tokens.append(token)
                     tags.append(tag)
     
@@ -89,14 +120,12 @@ def tokenize_and_align_labels(
     examples: dict,
     tokenizer,
     tag2id: dict[str, int],
-    max_length: int,
 ) -> dict:
     """Tokenize text and align labels with subword tokens."""
     tokenized_inputs = tokenizer(
         examples["tokens"],
         truncation=True,
         is_split_into_words=True,
-        max_length=max_length,
         padding="max_length",
     )
     
@@ -125,75 +154,69 @@ def tokenize_and_align_labels(
 def load_and_prepare_dataset(
     data_dir: Path,
     tokenizer,
-    max_length: int,
+    splits: list[str],
+    person_tag: str = "PER",
+    has_misc: bool = False,
+    language: str = "",
     train_ratio: float = 0.8,
     seed: int = 42,
 ) -> tuple[DatasetDict, dict[str, int], dict[int, str]]:
     """Load CONLL files and prepare HuggingFace dataset."""
     
     logger.info("Loading CONLL files...")
-    all_data = []
+
+    # Load files by split, optionally filter by language
+    files = {split: [] for split in splits}
+    for split in splits:
+        files[split] = [f for f in data_dir.glob(f"{language}*.conll") if split in f.name]
+
+    data = {split: [] for split in splits}
     
-    # Load all CONLL files
-    for conll_file in data_dir.glob("*.conll"):
-        logger.info(f"Loading {conll_file.name}...")
-        data = read_conll_file(str(conll_file))
-        all_data.extend(data)
-        logger.info(f"  Loaded {len(data)} sentences")
-    
-    if not all_data:
-        raise ValueError(f"No CONLL files found in {data_dir}")
-    
-    logger.info(f"Total sentences loaded: {len(all_data)}")
-    
+    for split in splits:
+        for conll_file in files[split]:
+            logger.info(f"Loading {conll_file.name}...")
+            data = read_conll_file(str(conll_file), person_tag=person_tag, has_misc=has_misc)
+            data[split].extend(data)
+            logger.info(f"  Loaded {len(data)} sentences")
+
+    all_training_data = data["train"] + data["dev"]
+        
     # Extract unique tags
-    tag_list = get_unique_tags(all_data)
+    tag_list = get_unique_tags(all_training_data)
     tag2id, id2tag = create_tag_mappings(tag_list)
     
     logger.info(f"Found {len(tag_list)} unique tags: {tag_list}")
     logger.info(f"Tag mappings: {tag2id}")
     
     # Split into train/eval
-    np.random.seed(seed)
-    indices = np.random.permutation(len(all_data))
-    split_idx = int(len(all_data) * train_ratio)
-    
-    train_data = [all_data[i] for i in indices[:split_idx]]
-    eval_data = [all_data[i] for i in indices[split_idx:]]
-    
-    logger.info(f"Train: {len(train_data)}, Eval: {len(eval_data)}")
-    
-    # Convert to HF datasets format
-    def create_hf_dataset(data: list[tuple[list[str], list[str]]]):
-        tokens_list = [item[0] for item in data]
-        tags_list = [item[1] for item in data]
-        return Dataset.from_dict({
-            "tokens": tokens_list,
-            "tags": tags_list,
-        })
-    
-    train_dataset = create_hf_dataset(train_data)
-    eval_dataset = create_hf_dataset(eval_data)
-    
-    # Tokenize and align labels
-    logger.info("Tokenizing...")
-    train_dataset = train_dataset.map(
-        lambda x: tokenize_and_align_labels(x, tokenizer, tag2id, max_length),
+    if "train" in data and len(data["dev"]) == 0:
+        np.random.seed(seed)
+        indices = np.random.permutation(len(all_training_data))
+        split_idx = int(len(all_training_data) * train_ratio)
+        
+        data["train"] = [all_training_data[i] for i in indices[:split_idx]]
+        data["dev"] = [all_training_data[i] for i in indices[split_idx:]]
+        
+        logger.info(f"Train: {len(data['train'])}, Dev: {len(data['dev'])}")
+        
+        # Convert to HF datasets format
+        def create_hf_dataset(data: list[tuple[list[str], list[str]]]):
+            tokens_list = [item[0] for item in data]
+            tags_list = [item[1] for item in data]
+            return Dataset.from_dict({
+                "tokens": tokens_list,
+                "tags": tags_list,
+            })
+
+    tokenized = {split: create_hf_dataset(data[split]).map(
+        lambda x: tokenize_and_align_labels(x, tokenizer, tag2id),
         batched=True,
         remove_columns=["tokens", "tags"],
         num_proc=4,
-    )
-    
-    eval_dataset = eval_dataset.map(
-        lambda x: tokenize_and_align_labels(x, tokenizer, tag2id, max_length),
-        batched=True,
-        remove_columns=["tokens", "tags"],
-        num_proc=4,
-    )
+    ) for split in splits}
     
     dataset_dict = DatasetDict({
-        "train": train_dataset,
-        "validation": eval_dataset,
+        split: tokenized[split] for split in splits
     })
     
     return dataset_dict, tag2id, id2tag
@@ -224,28 +247,39 @@ def compute_metrics(p, id2tag: dict[int, str]):
 
 def train_model(
     model_name: str,
-    data_dir: Path,
+    exp_config: dict,
     output_dir: Path,
-    max_length: int,
     batch_size: int,
     epochs: int,
     learning_rate: float,
-    weight_decay: float,
-    warmup_steps: int,
+    seed: int,
 ):
     """Main training function."""
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     logger.info(f"Using device: {device}")
-    
+    np.random.seed(seed)
+
     # Load tokenizer and model
     logger.info(f"Loading tokenizer and model: {model_name}")
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     
-    # Load and prepare dataset
-    dataset, tag2id, id2tag = load_and_prepare_dataset(
-        data_dir, tokenizer, max_length=max_length
+    # Load and prepare datasets
+    train_dir = exp_config["train_dir"]
+    test_dir = exp_config["test_dir"]
+    person_tag = exp_config["person_tag"]
+    has_misc = exp_config["has_misc"]
+
+    test_dataset, tag2id, id2tag = load_and_prepare_dataset(
+        test_dir, tokenizer, ["test"], person_tag, has_misc
     )
+
+    if train_dir is not None:
+        training_dataset, _, _ = load_and_prepare_dataset(
+            train_dir, tokenizer, ["train", "dev"], person_tag, has_misc
+        )
+    else:
+        training_dataset = None
     
     # Load model with correct num_labels
     num_labels = len(tag2id)
@@ -269,13 +303,11 @@ def train_model(
         num_train_epochs=epochs,
         per_device_train_batch_size=batch_size,
         per_device_eval_batch_size=batch_size,
-        save_steps=len(dataset["train"]) // batch_size,
-        save_total_limit=2,
+        save_steps=len(training_dataset["train"]) // batch_size,
+        save_total_limit=1,
         evaluation_strategy="epoch",
         save_strategy="epoch",
         learning_rate=learning_rate,
-        weight_decay=weight_decay,
-        warmup_steps=warmup_steps,
         logging_dir=str(output_dir / "logs"),
         logging_steps=50,
         load_best_model_at_end=True,
@@ -293,24 +325,27 @@ def train_model(
     trainer = Trainer(
         model=model,
         args=training_args,
-        train_dataset=dataset["train"],
-        eval_dataset=dataset["validation"],
+        train_dataset=training_dataset["train"],
+        eval_dataset=training_dataset["dev"],
         data_collator=data_collator,
         compute_metrics=compute_metrics_fn,
     )
     
     # Train
-    logger.info("Starting training...")
-    trainer.train()
-    
-    # Save final model
-    logger.info(f"Saving model to {output_dir}...")
-    model.save_pretrained(str(output_dir))
-    tokenizer.save_pretrained(str(output_dir))
+    if training_dataset is not None:
+        logger.info("Skipping training (already trained)")
+    else:
+        logger.info("Starting training...")
+        trainer.train()
+        
+        # Save final model
+        logger.info(f"Saving model to {output_dir}...")
+        model.save_pretrained(str(output_dir))
+        tokenizer.save_pretrained(str(output_dir))
     
     # Evaluate
     logger.info("Evaluating on test set...")
-    eval_results = trainer.evaluate()
+    eval_results = trainer.evaluate(test_dataset["test"])
     logger.info(f"Eval results: {eval_results}")
     
     with open(output_dir / "eval_results.json", "w") as f:
@@ -330,14 +365,15 @@ if __name__ == "__main__":
 
     args = parse_args()
     
-    train_model(
-        model_name=args.model_name,
-        data_dir=args.data_dir,
-        output_dir=args.output_dir,
-        max_length=args.max_length,
-        batch_size=args.batch_size,
-        epochs=args.epochs,
-        learning_rate=args.learning_rate,
-        weight_decay=args.weight_decay,
-        warmup_steps=args.warmup_steps
-    )
+    for exp_name, exp_config in EXPERIMENTS[args.model_name].items():
+        for seed in (0, 42, 1234):
+            logger.info(f"Running experiment: {exp_name}, seed: {seed}")
+            train_model(
+                model_name=MODEL_MAP[args.model_name],
+                exp_config=exp_config,
+                output_dir=Path(args.output_dir),
+                batch_size=args.batch_size,
+                epochs=args.epochs,
+                learning_rate=args.learning_rate,
+                seed=seed,
+        )
