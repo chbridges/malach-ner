@@ -17,7 +17,7 @@ from transformers import (
     Trainer,
     DataCollatorForTokenClassification,
 )
-from datasets import Dataset, DatasetDict
+from datasets import Dataset, DatasetDict, concatenate_datasets
 import seqeval.metrics
 
 IGNORE_TAGS = ("AMBIG", "TERM")
@@ -31,18 +31,16 @@ MALACH = Path("./review/training_data")
 BOTH = [EHRI, MALACH]
 
 MODEL_MAP = {
+    "large": "FacebookAI/xlm-roberta-large",
     "ehri": "ehri-ner/xlm-roberta-large-ehri-ner-all",
-    "malach": "FacebookAI/xlm-roberta-large",
+    "malach1_best": "ChrisBridges/xlm-r-malach-1e-5-best",
+    "malach1_last": "ChrisBridges/xlm-r-malach-1e-5-last",
+    "malach2_best": "ChrisBridges/xlm-r-malach-2e-5-best",
+    "malach2_last": "ChrisBridges/xlm-r-malach-2e-5-last",
     }
 
 EXPERIMENTS = {
-    "ehri": {
-        "frozen_ehri": {"train_dir": None, "test_dir": EHRI, "tagset": "ehri"},
-        "frozen_malach": {"train_dir": None, "test_dir": MALACH, "tagset": "ehri"},
-        "finetune_ehri": {"train_dir": MALACH, "test_dir": EHRI, "tagset": "ehri"},
-        "finetune_malach": {"train_dir": MALACH, "test_dir": MALACH, "tagset": "ehri"},
-    },
-    "malach": {
+    "large": {
         "ehri_ehri": {"train_dir": EHRI, "test_dir": EHRI, "tagset": "ehri"},
         "ehri_malach": {"train_dir": EHRI, "test_dir": MALACH, "tagset": "ehri"},
         "malach_ehri": {"train_dir": MALACH, "test_dir": EHRI, "tagset": "ehri"},
@@ -50,6 +48,15 @@ EXPERIMENTS = {
         "both_ehri": {"train_dir": BOTH, "test_dir": EHRI, "tagset": "ehri"},
         "both_malach": {"train_dir": BOTH, "test_dir": MALACH, "tagset": "malach"},
     },
+    "ehri": {
+        "frozen_ehri": {"train_dir": None, "test_dir": EHRI, "tagset": "ehri"},
+        "frozen_malach": {"train_dir": None, "test_dir": MALACH, "tagset": "ehri"},
+        "finetune_ehri": {"train_dir": MALACH, "test_dir": EHRI, "tagset": "ehri"},
+        "finetune_malach": {"train_dir": MALACH, "test_dir": MALACH, "tagset": "ehri"},
+    },
+    "malach": {
+        "finetune_ehri": {"train_dir": BOTH, "test_dir": EHRI, "tagset": "ehri"},
+    }
 }
 
 # Set up logging
@@ -60,7 +67,7 @@ logger = logging.getLogger(__name__)
 def parse_args():
     parser = argparse.ArgumentParser(description="Train XLM-RoBERTa for NER")
     parser.add_argument("--model_name", type=str, choices=MODEL_MAP.keys(), help="Pretrained model shortcut")
-    parser.add_argument("--output_dir", type=str, default="./models", help="Directory to save model and outputs")
+    parser.add_argument("--output_dir", type=str, default="./results", help="Directory to save model and outputs")
     parser.add_argument("--batch_size", type=int, default=16, help="Batch size for training and evaluation")
     parser.add_argument("--epochs", type=int, default=3, help="Number of training epochs")
     parser.add_argument("--learning_rate", type=float, default=3e-5, help="Learning rate")
@@ -254,7 +261,7 @@ def train_model(
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     
     # Load and prepare datasets
-    train_dir = exp_config["train_dir"]
+    train_dirs = exp_config["train_dir"]
     test_dir = exp_config["test_dir"]
     label_list = TAGSETS[exp_config["tagset"]]
 
@@ -262,10 +269,22 @@ def train_model(
         test_dir, tokenizer, ["test"], label_list
     )
 
-    if train_dir is not None:
-        training_dataset, _, _ = load_and_prepare_dataset(
-            train_dir, tokenizer, ["train", "dev"], label_list
-        )
+    train_dirs = [train_dirs] if isinstance(train_dirs, Path) else train_dirs
+
+    if train_dirs[0] is not None:
+        train_parts = []
+        dev_parts = []
+        for train_dir in train_dirs:
+            training_parts, _, _ = load_and_prepare_dataset(
+                train_dir, tokenizer, ["train", "dev"], label_list
+            )
+            train_parts.append(training_parts["train"])
+            dev_parts.append(training_parts["dev"])
+
+        training_dataset = DatasetDict({
+            "train": concatenate_datasets(train_parts),
+            "dev": concatenate_datasets(dev_parts),
+        })
     else:
         training_dataset = None
     
@@ -339,7 +358,7 @@ def train_model(
     logger.info(f"\n{test_report}")
     
     with open(output_dir / f"{handle}_{seed}.json", "w") as f:
-        json.dump(test_report, f, indent=2)
+        json.dump(test_results, f, indent=2)
     with open(output_dir / f"{handle}_{seed}.txt", "w") as f:
         f.write(test_report)
     
@@ -347,7 +366,6 @@ def train_model(
 
 
 if __name__ == "__main__":
-    # Check if GPU is available
     if torch.cuda.is_available():
         logger.info(f"GPU available: {torch.cuda.get_device_name(0)}")
         logger.info(f"GPU memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.2f} GB")
@@ -355,8 +373,9 @@ if __name__ == "__main__":
         logger.warning("No GPU available. Training will be slow.")
 
     args = parse_args()
+    model_type = "malach" if "malach" in args.model_name else args.model_name
     
-    for exp_name, exp_config in EXPERIMENTS[args.model_name].items():
+    for exp_name, exp_config in EXPERIMENTS[model_type].items():
         for seed in (0, 42, 1234):
             if exp_config["train_dir"] is None and seed != 0:
                 continue
@@ -365,7 +384,7 @@ if __name__ == "__main__":
             train_model(
                 model_name=MODEL_MAP[args.model_name],
                 exp_config=exp_config,
-                output_dir=Path(args.output_dir),
+                output_dir=Path(args.output_dir) / model_type,
                 batch_size=args.batch_size,
                 epochs=args.epochs,
                 learning_rate=args.learning_rate,
