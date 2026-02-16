@@ -33,10 +33,8 @@ BOTH = [EHRI, MALACH]
 MODEL_MAP = {
     "large": "FacebookAI/xlm-roberta-large",
     "ehri": "ehri-ner/xlm-roberta-large-ehri-ner-all",
-    "malach1_best": "ChrisBridges/xlm-r-malach-1e-5-best",
-    "malach1_last": "ChrisBridges/xlm-r-malach-1e-5-last",
-    "malach2_best": "ChrisBridges/xlm-r-malach-2e-5-best",
-    "malach2_last": "ChrisBridges/xlm-r-malach-2e-5-last",
+    "malach1": "ChrisBridges/xlm-r-malach-v5-1e-5",
+    "malach2": "ChrisBridges/xlm-r-malach-v5-2e-5",
     }
 
 EXPERIMENTS = {
@@ -55,7 +53,7 @@ EXPERIMENTS = {
         "finetune_malach": {"train_dir": MALACH, "test_dir": MALACH, "tagset": "ehri"},
     },
     "malach": {
-        "finetune_ehri": {"train_dir": BOTH, "test_dir": EHRI, "tagset": "ehri"},
+        "finetune_ehri": {"train_dir": EHRI, "test_dir": EHRI, "tagset": "ehri"},
     }
 }
 
@@ -269,7 +267,7 @@ def train_model(
         test_dir, tokenizer, ["test"], label_list
     )
 
-    train_dirs = [train_dirs] if isinstance(train_dirs, Path) else train_dirs
+    train_dirs = train_dirs if isinstance(train_dirs, list) else [train_dirs]
 
     if train_dirs[0] is not None:
         train_parts = []
@@ -357,9 +355,9 @@ def train_model(
     logger.info(f"Eval results: {test_results}")
     logger.info(f"\n{test_report}")
     
-    with open(output_dir / f"{handle}_{seed}.json", "w") as f:
+    with open(output_dir / f"{handle}.json", "w") as f:
         json.dump(test_results, f, indent=2)
-    with open(output_dir / f"{handle}_{seed}.txt", "w") as f:
+    with open(output_dir / f"{handle}.txt", "w") as f:
         f.write(test_report)
     
     return model, tokenizer, label2id, id2label
@@ -380,14 +378,20 @@ if __name__ == "__main__":
             if exp_config["train_dir"] is None and seed != 0:
                 continue
 
+            output_dir = Path(args.output_dir) / args.model_name
+            handle=f"{exp_name}_{seed}"
+            if (output_dir / f"{handle}.txt").exists():
+                logger.info(f"Skipping experiment {args.model_name}/{handle} (already exists)")
+                continue
+
             logger.info(f"Running experiment: {exp_name}, seed: {seed}")
             train_model(
                 model_name=MODEL_MAP[args.model_name],
                 exp_config=exp_config,
-                output_dir=Path(args.output_dir) / model_type,
+                output_dir=output_dir,
                 batch_size=args.batch_size,
                 epochs=args.epochs,
                 learning_rate=args.learning_rate,
                 seed=seed,
-                handle=exp_name,
+                handle=handle,
         )
