@@ -8,7 +8,8 @@
       "GHETTO": 8,
       "DATE": 18,
       "MISC": 39,
-      "TOTAL": 145
+      "TOTAL": 145,
+      "TOKENS": 3315
     },
     "cs-10657-02-13.conll": {
       "PER": 35,
@@ -18,7 +19,8 @@
       "GHETTO": 7,
       "DATE": 4,
       "MISC": 37,
-      "TOTAL": 112
+      "TOTAL": 112,
+      "TOKENS": 3872
     },
     "cs-10657-03-13.conll": {
       "PER": 28,
@@ -28,7 +30,8 @@
       "GHETTO": 1,
       "DATE": 8,
       "MISC": 32,
-      "TOTAL": 111
+      "TOTAL": 111,
+      "TOKENS": 3888
     },
     "cs-10657-04-13.conll": {
       "PER": 19,
@@ -38,7 +41,8 @@
       "GHETTO": 2,
       "DATE": 9,
       "MISC": 53,
-      "TOTAL": 177
+      "TOTAL": 177,
+      "TOKENS": 3735
     },
     "cs-RG-50.675.0038-01-13.conll": {
       "PER": 31,
@@ -48,7 +52,8 @@
       "GHETTO": 0,
       "DATE": 3,
       "MISC": 38,
-      "TOTAL": 97
+      "TOTAL": 97,
+      "TOKENS": 2879
     },
     "cs-RG-50.675.0040-01-13.conll": {
       "PER": 54,
@@ -58,7 +63,8 @@
       "GHETTO": 0,
       "DATE": 1,
       "MISC": 76,
-      "TOTAL": 175
+      "TOTAL": 175,
+      "TOKENS": 5048
     },
     "cs-RG-50.675.0041-01-13.conll": {
       "PER": 35,
@@ -68,7 +74,8 @@
       "GHETTO": 0,
       "DATE": 1,
       "MISC": 31,
-      "TOTAL": 117
+      "TOTAL": 117,
+      "TOKENS": 5014
     }
   },
   "da": {
@@ -80,7 +87,8 @@
       "GHETTO": 0,
       "DATE": 6,
       "MISC": 52,
-      "TOTAL": 114
+      "TOTAL": 114,
+      "TOKENS": 4263
     },
     "da-35282-02-14.conll": {
       "PER": 1,
@@ -90,7 +98,8 @@
       "GHETTO": 1,
       "DATE": 13,
       "MISC": 32,
-      "TOTAL": 105
+      "TOTAL": 105,
+      "TOKENS": 4491
     },
     "da-35282-03-14.conll": {
       "PER": 1,
@@ -100,7 +109,8 @@
       "GHETTO": 4,
       "DATE": 0,
       "MISC": 16,
-      "TOTAL": 52
+      "TOTAL": 52,
+      "TOKENS": 4763
     },
     "da-35282-04-14.conll": {
       "PER": 1,
@@ -110,7 +120,8 @@
       "GHETTO": 0,
       "DATE": 0,
       "MISC": 9,
-      "TOTAL": 69
+      "TOTAL": 69,
+      "TOKENS": 4482
     },
     "da-35282-05-14.conll": {
       "PER": 1,
@@ -120,7 +131,8 @@
       "GHETTO": 0,
       "DATE": 5,
       "MISC": 35,
-      "TOTAL": 94
+      "TOTAL": 94,
+      "TOKENS": 4464
     },
     "da-35282-06-14.conll": {
       "PER": 3,
@@ -130,7 +142,8 @@
       "GHETTO": 2,
       "DATE": 3,
       "MISC": 15,
-      "TOTAL": 81
+      "TOTAL": 81,
+      "TOKENS": 3971
     }
   },
   "de": {
@@ -142,7 +155,8 @@
       "GHETTO": 0,
       "DATE": 11,
       "MISC": 13,
-      "TOTAL": 105
+      "TOTAL": 105,
+      "TOKENS": 3324
     },
     "de-35104-02-1.conll": {
       "PER": 9,
@@ -152,7 +166,8 @@
       "GHETTO": 0,
       "DATE": 3,
       "MISC": 113,
-      "TOTAL": 143
+      "TOTAL": 143,
+      "TOKENS": 3685
     },
     "de-35104-03-1.conll": {
       "PER": 4,
@@ -162,7 +177,8 @@
       "GHETTO": 0,
       "DATE": 14,
       "MISC": 46,
-      "TOTAL": 123
+      "TOTAL": 123,
+      "TOKENS": 3497
     },
     "de-35104-04-1.conll": {
       "PER": 1,
@@ -172,7 +188,8 @@
       "GHETTO": 0,
       "DATE": 9,
       "MISC": 45,
-      "TOTAL": 95
+      "TOTAL": 95,
+      "TOKENS": 3938
     },
     "de-35104-05-1.conll": {
       "PER": 17,
@@ -182,7 +199,8 @@
       "GHETTO": 0,
       "DATE": 2,
       "MISC": 32,
-      "TOTAL": 82
+      "TOTAL": 82,
+      "TOKENS": 3511
     },
     "de-35104-06-1.conll": {
       "PER": 26,
@@ -192,7 +210,8 @@
       "GHETTO": 0,
       "DATE": 4,
       "MISC": 26,
-      "TOTAL": 99
+      "TOTAL": 99,
+      "TOKENS": 3370
     },
     "de-35104-07-1.conll": {
       "PER": 39,
@@ -202,7 +221,8 @@
       "GHETTO": 0,
       "DATE": 10,
       "MISC": 12,
-      "TOTAL": 86
+      "TOTAL": 86,
+      "TOKENS": 3661
     },
     "de-35104-08-1.conll": {
       "PER": 37,
@@ -212,7 +232,8 @@
       "GHETTO": 0,
       "DATE": 4,
       "MISC": 20,
-      "TOTAL": 76
+      "TOTAL": 76,
+      "TOKENS": 3261
     },
     "de-35104-09-1.conll": {
       "PER": 20,
@@ -222,7 +243,8 @@
       "GHETTO": 0,
       "DATE": 1,
       "MISC": 18,
-      "TOTAL": 59
+      "TOTAL": 59,
+      "TOKENS": 3402
     },
     "de-35104-10-1.conll": {
       "PER": 8,
@@ -232,7 +254,8 @@
       "GHETTO": 0,
       "DATE": 3,
       "MISC": 19,
-      "TOTAL": 111
+      "TOTAL": 111,
+      "TOKENS": 3356
     },
     "de-35104-11-1.conll": {
       "PER": 11,
@@ -242,7 +265,8 @@
       "GHETTO": 0,
       "DATE": 8,
       "MISC": 14,
-      "TOTAL": 61
+      "TOTAL": 61,
+      "TOKENS": 3394
     },
     "de-35104-12-1.conll": {
       "PER": 18,
@@ -252,7 +276,8 @@
       "GHETTO": 0,
       "DATE": 3,
       "MISC": 37,
-      "TOTAL": 87
+      "TOTAL": 87,
+      "TOKENS": 3674
     },
     "de-35104-13-1.conll": {
       "PER": 22,
@@ -262,7 +287,8 @@
       "GHETTO": 0,
       "DATE": 6,
       "MISC": 12,
-      "TOTAL": 111
+      "TOTAL": 111,
+      "TOKENS": 3915
     },
     "de-35104-14-1.conll": {
       "PER": 18,
@@ -272,7 +298,8 @@
       "GHETTO": 0,
       "DATE": 18,
       "MISC": 41,
-      "TOTAL": 158
+      "TOTAL": 158,
+      "TOKENS": 3315
     },
     "de-35104-15-1.conll": {
       "PER": 54,
@@ -282,7 +309,8 @@
       "GHETTO": 0,
       "DATE": 10,
       "MISC": 38,
-      "TOTAL": 160
+      "TOTAL": 160,
+      "TOKENS": 4384
     },
     "de-35104-16-1.conll": {
       "PER": 65,
@@ -292,7 +320,8 @@
       "GHETTO": 0,
       "DATE": 7,
       "MISC": 28,
-      "TOTAL": 152
+      "TOTAL": 152,
+      "TOKENS": 3321
     },
     "de-35104-17-1.conll": {
       "PER": 55,
@@ -302,7 +331,8 @@
       "GHETTO": 0,
       "DATE": 9,
       "MISC": 49,
-      "TOTAL": 199
+      "TOTAL": 199,
+      "TOKENS": 3698
     },
     "de-35104-18-1.conll": {
       "PER": 44,
@@ -312,7 +342,8 @@
       "GHETTO": 0,
       "DATE": 19,
       "MISC": 16,
-      "TOTAL": 165
+      "TOTAL": 165,
+      "TOKENS": 3545
     },
     "de-35104-19-1.conll": {
       "PER": 49,
@@ -322,7 +353,8 @@
       "GHETTO": 0,
       "DATE": 13,
       "MISC": 48,
-      "TOTAL": 210
+      "TOTAL": 210,
+      "TOKENS": 3560
     },
     "de-35104-20-1.conll": {
       "PER": 39,
@@ -332,7 +364,8 @@
       "GHETTO": 0,
       "DATE": 11,
       "MISC": 26,
-      "TOTAL": 145
+      "TOTAL": 145,
+      "TOKENS": 3710
     },
     "de-35104-21-1.conll": {
       "PER": 10,
@@ -342,7 +375,8 @@
       "GHETTO": 0,
       "DATE": 4,
       "MISC": 42,
-      "TOTAL": 98
+      "TOTAL": 98,
+      "TOKENS": 3611
     }
   },
   "en": {
@@ -354,7 +388,8 @@
       "GHETTO": 0,
       "DATE": 12,
       "MISC": 29,
-      "TOTAL": 142
+      "TOTAL": 142,
+      "TOKENS": 3949
     },
     "en-29950-02-13.conll": {
       "PER": 11,
@@ -364,7 +399,8 @@
       "GHETTO": 0,
       "DATE": 13,
       "MISC": 34,
-      "TOTAL": 97
+      "TOTAL": 97,
+      "TOKENS": 3805
     },
     "en-29950-03-13.conll": {
       "PER": 9,
@@ -374,7 +410,8 @@
       "GHETTO": 0,
       "DATE": 1,
       "MISC": 68,
-      "TOTAL": 113
+      "TOTAL": 113,
+      "TOKENS": 4829
     },
     "en-29950-04-13.conll": {
       "PER": 7,
@@ -384,7 +421,8 @@
       "GHETTO": 0,
       "DATE": 2,
       "MISC": 75,
-      "TOTAL": 107
+      "TOTAL": 107,
+      "TOKENS": 4507
     },
     "en-29950-05-13.conll": {
       "PER": 16,
@@ -394,7 +432,8 @@
       "GHETTO": 0,
       "DATE": 0,
       "MISC": 42,
-      "TOTAL": 65
+      "TOTAL": 65,
+      "TOKENS": 4724
     },
     "en-29950-06-13.conll": {
       "PER": 25,
@@ -404,7 +443,8 @@
       "GHETTO": 0,
       "DATE": 7,
       "MISC": 66,
-      "TOTAL": 133
+      "TOTAL": 133,
+      "TOKENS": 4146
     },
     "en-29950-07-13.conll": {
       "PER": 57,
@@ -414,7 +454,8 @@
       "GHETTO": 0,
       "DATE": 3,
       "MISC": 119,
-      "TOTAL": 266
+      "TOTAL": 266,
+      "TOKENS": 3760
     },
     "en-29950-08-13.conll": {
       "PER": 40,
@@ -424,7 +465,8 @@
       "GHETTO": 0,
       "DATE": 17,
       "MISC": 107,
-      "TOTAL": 272
+      "TOTAL": 272,
+      "TOKENS": 4473
     },
     "en-29950-09-13.conll": {
       "PER": 7,
@@ -434,7 +476,8 @@
       "GHETTO": 0,
       "DATE": 6,
       "MISC": 121,
-      "TOTAL": 198
+      "TOTAL": 198,
+      "TOKENS": 3853
     },
     "en-29950-10-13.conll": {
       "PER": 21,
@@ -444,7 +487,8 @@
       "GHETTO": 0,
       "DATE": 9,
       "MISC": 41,
-      "TOTAL": 115
+      "TOTAL": 115,
+      "TOKENS": 4103
     },
     "en-29950-11-13.conll": {
       "PER": 6,
@@ -454,7 +498,8 @@
       "GHETTO": 0,
       "DATE": 5,
       "MISC": 26,
-      "TOTAL": 116
+      "TOTAL": 116,
+      "TOKENS": 4501
     },
     "en-29950-12-13.conll": {
       "PER": 17,
@@ -464,7 +509,8 @@
       "GHETTO": 0,
       "DATE": 10,
       "MISC": 43,
-      "TOTAL": 174
+      "TOTAL": 174,
+      "TOKENS": 4936
     },
     "en-29950-13-13.conll": {
       "PER": 38,
@@ -474,7 +520,8 @@
       "GHETTO": 0,
       "DATE": 1,
       "MISC": 55,
-      "TOTAL": 127
+      "TOTAL": 127,
+      "TOKENS": 3989
     },
     "en-29950-14-13.conll": {
       "PER": 43,
@@ -484,7 +531,8 @@
       "GHETTO": 0,
       "DATE": 8,
       "MISC": 53,
-      "TOTAL": 160
+      "TOTAL": 160,
+      "TOKENS": 4183
     },
     "en-29950-15-13.conll": {
       "PER": 17,
@@ -494,7 +542,8 @@
       "GHETTO": 0,
       "DATE": 5,
       "MISC": 60,
-      "TOTAL": 151
+      "TOTAL": 151,
+      "TOKENS": 4315
     },
     "en-29950-16-13.conll": {
       "PER": 19,
@@ -504,7 +553,8 @@
       "GHETTO": 0,
       "DATE": 13,
       "MISC": 71,
-      "TOTAL": 178
+      "TOTAL": 178,
+      "TOKENS": 5211
     },
     "en-29950-17-13.conll": {
       "PER": 28,
@@ -514,7 +564,8 @@
       "GHETTO": 0,
       "DATE": 5,
       "MISC": 71,
-      "TOTAL": 184
+      "TOTAL": 184,
+      "TOKENS": 4342
     },
     "en-29950-18-13.conll": {
       "PER": 34,
@@ -524,7 +575,8 @@
       "GHETTO": 0,
       "DATE": 5,
       "MISC": 40,
-      "TOTAL": 111
+      "TOTAL": 111,
+      "TOKENS": 4498
     },
     "en-29950-19-13.conll": {
       "PER": 58,
@@ -534,7 +586,8 @@
       "GHETTO": 0,
       "DATE": 9,
       "MISC": 3,
-      "TOTAL": 103
+      "TOTAL": 103,
+      "TOKENS": 4754
     },
     "en-29950-20-13.conll": {
       "PER": 54,
@@ -544,7 +597,8 @@
       "GHETTO": 0,
       "DATE": 8,
       "MISC": 25,
-      "TOTAL": 168
+      "TOTAL": 168,
+      "TOKENS": 5189
     },
     "en-29950-21-13.conll": {
       "PER": 21,
@@ -554,7 +608,8 @@
       "GHETTO": 0,
       "DATE": 12,
       "MISC": 70,
-      "TOTAL": 192
+      "TOTAL": 192,
+      "TOKENS": 4502
     },
     "en-29950-22-13.conll": {
       "PER": 62,
@@ -564,7 +619,8 @@
       "GHETTO": 0,
       "DATE": 19,
       "MISC": 11,
-      "TOTAL": 121
+      "TOTAL": 121,
+      "TOKENS": 3710
     }
   },
   "hu": {
@@ -576,7 +632,8 @@
       "GHETTO": 0,
       "DATE": 15,
       "MISC": 91,
-      "TOTAL": 225
+      "TOTAL": 225,
+      "TOKENS": 3285
     },
     "hu-50346-02-3.conll": {
       "PER": 10,
@@ -586,7 +643,8 @@
       "GHETTO": 0,
       "DATE": 7,
       "MISC": 62,
-      "TOTAL": 134
+      "TOTAL": 134,
+      "TOKENS": 3798
     },
     "hu-50346-03-3.conll": {
       "PER": 28,
@@ -596,7 +654,8 @@
       "GHETTO": 0,
       "DATE": 4,
       "MISC": 32,
-      "TOTAL": 101
+      "TOTAL": 101,
+      "TOKENS": 3983
     },
     "hu-50346-04-3.conll": {
       "PER": 48,
@@ -606,7 +665,8 @@
       "GHETTO": 0,
       "DATE": 4,
       "MISC": 36,
-      "TOTAL": 123
+      "TOTAL": 123,
+      "TOKENS": 3796
     },
     "hu-50346-05-3.conll": {
       "PER": 14,
@@ -616,7 +676,8 @@
       "GHETTO": 0,
       "DATE": 11,
       "MISC": 31,
-      "TOTAL": 128
+      "TOTAL": 128,
+      "TOKENS": 3789
     },
     "hu-50346-06-3.conll": {
       "PER": 12,
@@ -626,7 +687,8 @@
       "GHETTO": 0,
       "DATE": 14,
       "MISC": 56,
-      "TOTAL": 150
+      "TOTAL": 150,
+      "TOKENS": 3070
     },
     "hu-50346-07-3.conll": {
       "PER": 47,
@@ -636,7 +698,8 @@
       "GHETTO": 0,
       "DATE": 15,
       "MISC": 19,
-      "TOTAL": 137
+      "TOTAL": 137,
+      "TOKENS": 3681
     }
   },
   "nl": {
@@ -648,7 +711,8 @@
       "GHETTO": 0,
       "DATE": 30,
       "MISC": 38,
-      "TOTAL": 194
+      "TOTAL": 194,
+      "TOKENS": 4699
     },
     "nl-7321-02-5.conll": {
       "PER": 60,
@@ -658,7 +722,8 @@
       "GHETTO": 2,
       "DATE": 32,
       "MISC": 63,
-      "TOTAL": 286
+      "TOTAL": 286,
+      "TOKENS": 4912
     },
     "nl-7321-03-5.conll": {
       "PER": 29,
@@ -668,7 +733,8 @@
       "GHETTO": 0,
       "DATE": 21,
       "MISC": 37,
-      "TOTAL": 176
+      "TOTAL": 176,
+      "TOKENS": 5270
     },
     "nl-7321-04-5.conll": {
       "PER": 31,
@@ -678,7 +744,8 @@
       "GHETTO": 0,
       "DATE": 29,
       "MISC": 26,
-      "TOTAL": 225
+      "TOTAL": 225,
+      "TOKENS": 5450
     },
     "nl-7321-05-5.conll": {
       "PER": 9,
@@ -688,7 +755,8 @@
       "GHETTO": 0,
       "DATE": 32,
       "MISC": 24,
-      "TOTAL": 147
+      "TOTAL": 147,
+      "TOKENS": 3038
     }
   },
   "pl": {
@@ -700,7 +768,8 @@
       "GHETTO": 0,
       "DATE": 1,
       "MISC": 8,
-      "TOTAL": 94
+      "TOTAL": 94,
+      "TOKENS": 3704
     },
     "pl-9014-02-15.conll": {
       "PER": 27,
@@ -710,7 +779,8 @@
       "GHETTO": 8,
       "DATE": 5,
       "MISC": 11,
-      "TOTAL": 89
+      "TOTAL": 89,
+      "TOKENS": 3823
     },
     "pl-9014-03-15.conll": {
       "PER": 25,
@@ -720,7 +790,8 @@
       "GHETTO": 6,
       "DATE": 1,
       "MISC": 0,
-      "TOTAL": 48
+      "TOTAL": 48,
+      "TOKENS": 3696
     },
     "pl-9014-04-15.conll": {
       "PER": 17,
@@ -730,7 +801,8 @@
       "GHETTO": 0,
       "DATE": 2,
       "MISC": 3,
-      "TOTAL": 50
+      "TOTAL": 50,
+      "TOKENS": 3907
     },
     "pl-9014-05-15.conll": {
       "PER": 17,
@@ -740,7 +812,8 @@
       "GHETTO": 1,
       "DATE": 2,
       "MISC": 24,
-      "TOTAL": 70
+      "TOTAL": 70,
+      "TOKENS": 4310
     },
     "pl-9014-06-15.conll": {
       "PER": 39,
@@ -750,7 +823,8 @@
       "GHETTO": 0,
       "DATE": 16,
       "MISC": 11,
-      "TOTAL": 127
+      "TOTAL": 127,
+      "TOKENS": 3963
     }
   }
 }

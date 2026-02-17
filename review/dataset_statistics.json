@@ -1,0 +1,282 @@
+{
+  "cs": {
+    "train": {
+      "TOKENS": 18831,
+      "PER": 146,
+      "ORG": 41,
+      "LOC": 213,
+      "CAMP": 4,
+      "GHETTO": 11,
+      "DATE": 39,
+      "MISC": 193,
+      "TOTAL": 647
+    },
+    "test": {
+      "TOKENS": 8920,
+      "PER": 89,
+      "ORG": 9,
+      "LOC": 50,
+      "CAMP": 14,
+      "GHETTO": 7,
+      "DATE": 5,
+      "MISC": 113,
+      "TOTAL": 287
+    },
+    "total": {
+      "TOKENS": 27751,
+      "PER": 235,
+      "ORG": 50,
+      "LOC": 263,
+      "CAMP": 18,
+      "GHETTO": 18,
+      "DATE": 44,
+      "MISC": 306,
+      "TOTAL": 934
+    }
+  },
+  "da": {
+    "train": {
+      "TOKENS": 17972,
+      "PER": 20,
+      "ORG": 41,
+      "LOC": 53,
+      "CAMP": 88,
+      "GHETTO": 4,
+      "DATE": 11,
+      "MISC": 112,
+      "TOTAL": 329
+    },
+    "test": {
+      "TOKENS": 8462,
+      "PER": 4,
+      "ORG": 42,
+      "LOC": 60,
+      "CAMP": 14,
+      "GHETTO": 3,
+      "DATE": 16,
+      "MISC": 47,
+      "TOTAL": 186
+    },
+    "total": {
+      "TOKENS": 26434,
+      "PER": 24,
+      "ORG": 83,
+      "LOC": 113,
+      "CAMP": 102,
+      "GHETTO": 7,
+      "DATE": 27,
+      "MISC": 159,
+      "TOTAL": 515
+    }
+  },
+  "de": {
+    "train": {
+      "TOKENS": 57751,
+      "PER": 437,
+      "ORG": 276,
+      "LOC": 538,
+      "CAMP": 106,
+      "GHETTO": 0,
+      "DATE": 143,
+      "MISC": 472,
+      "TOTAL": 1972
+    },
+    "test": {
+      "TOKENS": 17381,
+      "PER": 121,
+      "ORG": 66,
+      "LOC": 100,
+      "CAMP": 17,
+      "GHETTO": 0,
+      "DATE": 26,
+      "MISC": 223,
+      "TOTAL": 553
+    },
+    "total": {
+      "TOKENS": 75132,
+      "PER": 558,
+      "ORG": 342,
+      "LOC": 638,
+      "CAMP": 123,
+      "GHETTO": 0,
+      "DATE": 169,
+      "MISC": 695,
+      "TOTAL": 2525
+    }
+  },
+  "en": {
+    "train": {
+      "TOKENS": 74114,
+      "PER": 539,
+      "ORG": 295,
+      "LOC": 648,
+      "CAMP": 12,
+      "GHETTO": 0,
+      "DATE": 120,
+      "MISC": 963,
+      "TOTAL": 2577
+    },
+    "test": {
+      "TOKENS": 22165,
+      "PER": 82,
+      "ORG": 86,
+      "LOC": 231,
+      "CAMP": 0,
+      "GHETTO": 0,
+      "DATE": 50,
+      "MISC": 267,
+      "TOTAL": 716
+    },
+    "total": {
+      "TOKENS": 96279,
+      "PER": 621,
+      "ORG": 381,
+      "LOC": 879,
+      "CAMP": 12,
+      "GHETTO": 0,
+      "DATE": 170,
+      "MISC": 1230,
+      "TOTAL": 3293
+    }
+  },
+  "hu": {
+    "train": {
+      "TOKENS": 21604,
+      "PER": 195,
+      "ORG": 50,
+      "LOC": 272,
+      "CAMP": 19,
+      "GHETTO": 0,
+      "DATE": 63,
+      "MISC": 265,
+      "TOTAL": 864
+    },
+    "test": {
+      "TOKENS": 3798,
+      "PER": 10,
+      "ORG": 8,
+      "LOC": 39,
+      "CAMP": 8,
+      "GHETTO": 0,
+      "DATE": 7,
+      "MISC": 62,
+      "TOTAL": 134
+    },
+    "total": {
+      "TOKENS": 25402,
+      "PER": 205,
+      "ORG": 58,
+      "LOC": 311,
+      "CAMP": 27,
+      "GHETTO": 0,
+      "DATE": 70,
+      "MISC": 327,
+      "TOTAL": 998
+    }
+  },
+  "nl": {
+    "train": {
+      "TOKENS": 18457,
+      "PER": 97,
+      "ORG": 84,
+      "LOC": 256,
+      "CAMP": 68,
+      "GHETTO": 0,
+      "DATE": 112,
+      "MISC": 125,
+      "TOTAL": 742
+    },
+    "test": {
+      "TOKENS": 4912,
+      "PER": 60,
+      "ORG": 35,
+      "LOC": 82,
+      "CAMP": 12,
+      "GHETTO": 2,
+      "DATE": 32,
+      "MISC": 63,
+      "TOTAL": 286
+    },
+    "total": {
+      "TOKENS": 23369,
+      "PER": 157,
+      "ORG": 119,
+      "LOC": 338,
+      "CAMP": 80,
+      "GHETTO": 2,
+      "DATE": 144,
+      "MISC": 188,
+      "TOTAL": 1028
+    }
+  },
+  "pl": {
+    "train": {
+      "TOKENS": 19580,
+      "PER": 160,
+      "ORG": 56,
+      "LOC": 75,
+      "CAMP": 23,
+      "GHETTO": 7,
+      "DATE": 22,
+      "MISC": 46,
+      "TOTAL": 389
+    },
+    "test": {
+      "TOKENS": 3823,
+      "PER": 27,
+      "ORG": 20,
+      "LOC": 18,
+      "CAMP": 0,
+      "GHETTO": 8,
+      "DATE": 5,
+      "MISC": 11,
+      "TOTAL": 89
+    },
+    "total": {
+      "TOKENS": 23403,
+      "PER": 187,
+      "ORG": 76,
+      "LOC": 93,
+      "CAMP": 23,
+      "GHETTO": 15,
+      "DATE": 27,
+      "MISC": 57,
+      "TOTAL": 478
+    }
+  },
+  "total": {
+    "train": {
+      "TOKENS": 228309,
+      "PER": 1594,
+      "ORG": 843,
+      "LOC": 2055,
+      "CAMP": 320,
+      "GHETTO": 22,
+      "DATE": 510,
+      "MISC": 2176,
+      "TOTAL": 7520
+    },
+    "test": {
+      "TOKENS": 69461,
+      "PER": 393,
+      "ORG": 266,
+      "LOC": 580,
+      "CAMP": 65,
+      "GHETTO": 20,
+      "DATE": 141,
+      "MISC": 786,
+      "TOTAL": 2251
+    },
+    "total": {
+      "TOKENS": 297770,
+      "PER": 1987,
+      "ORG": 1109,
+      "LOC": 2635,
+      "CAMP": 385,
+      "GHETTO": 42,
+      "DATE": 651,
+      "MISC": 2962,
+      "TOTAL": 9771
+    }
+  }
+}

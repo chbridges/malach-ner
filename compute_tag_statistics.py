@@ -22,14 +22,17 @@ if __name__ == "__main__":
 
         annotators = {language: max(annotator, key=annotator.get) for language, annotator in data.items()}
 
-        annotations = {}
+        fulltext = {}
+        words = {}
         for language, annotator in annotators.items():
-            for file in sorted((args.input_dir / 'conll_all').glob(f'{language}-*-{annotator}.conll')):
+            for file in sorted((args.input_dir / 'labelstudio_conll').glob(f'{language}-*-{annotator}.conll')):
                 with open(file, 'r') as f:
-                    annotations[file.name] = f.read()
+                    fulltext[file.name] = f.read()
+                with open(file, 'r') as f:
+                    words[file.name] = len([line for line in f.readlines() if line.strip()])
 
         tag_counts = {}
-        for filename, content in annotations.items():
+        for filename, content in fulltext.items():
             language = filename[:2]
             tag_counts.setdefault(language, {})
             tag_counts[language][filename] = {}
@@ -37,6 +40,7 @@ if __name__ == "__main__":
                 pattern = f"B-{tag}"
                 tag_counts[language][filename][tag] = len(re.findall(pattern, content))
             tag_counts[language][filename]["TOTAL"] = sum(tag_counts[language][filename].values())
+            tag_counts[language][filename]["TOKENS"] = words[filename]
 
         with output_file.open("w") as f:
             json.dump(tag_counts, f, indent=2)
