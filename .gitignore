@@ -11,3 +11,5 @@ final/
 *label2id.json
 *tokenizer.json
 *tokenizer_config.json
+# slurm scripts
+*.sh
