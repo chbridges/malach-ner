@@ -11,6 +11,7 @@ args = parser.parse_args()
 
 split_dir = Path(f"./{args.dataset}/temp/")
 conll_dir = Path(f"./{args.dataset}/labelstudio_conll/")
+annotator2_dir = Path(f"./{args.dataset}/annotator2_conll/")
 stats_file = Path(f"./{args.dataset}/annotator_statistics.json")
 
 split_dir.mkdir(exist_ok=True)
@@ -41,6 +42,7 @@ with stats_file.open("w") as file:
     json.dump(annotator_statistics, file, indent=2)
 
 conll_dir.mkdir(exist_ok=True)
+annotator2_dir.mkdir(exist_ok=True)
 with stats_file.open() as file:
     annotator_statistics = json.load(file)
 
@@ -54,6 +56,16 @@ for language, annotators in annotator_statistics.items():
         converted = filepath.with_suffix(".conll")
         (converted / "result.conll").rename(conll_dir / converted.name)
         converted.rmdir()
+
+    if len(annotators) > 1:
+        annotator2 = sorted(annotators.items(), key=lambda x: x[1], reverse=True)[1][0]
+        for filepath in tqdm(sorted(split_dir.glob(f"{language}-*-{annotator2}.json")), desc=f"Converting {language}"):
+            infile = str(filepath.absolute())
+            os.system(f"cd ../label-studio-converter; bash convert.sh {infile}")
+
+            converted = filepath.with_suffix(".conll")
+            (converted / "result.conll").rename(annotator2_dir / converted.name)
+            converted.rmdir()
 
 for file in split_dir.glob("*.json"):
     file.unlink()
