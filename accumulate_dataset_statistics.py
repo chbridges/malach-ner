@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-data = Path("./review")
+data = Path("./final")
 with (data / "test_ids.txt").open() as f:
     test_ids = set(line.strip() for line in f.readlines())
 with (data / "tag_statistics.json").open() as f:
