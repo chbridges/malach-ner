@@ -1,6 +1,6 @@
 """
 Train XLM-RoBERTa-large on NER dataset using the transformers library.
-Supports CONLL format input.
+Supports CoNLL format input.
 """
 
 import argparse
@@ -24,17 +24,23 @@ IGNORE_TAGS = ("AMBIG", "TERM")
 TAGSETS = {
     "ehri": ['B-CAMP', 'B-DATE', 'B-GHETTO', 'B-LOC', 'B-ORG', 'B-PERS', 'I-CAMP', 'I-DATE', 'I-GHETTO', 'I-LOC', 'I-ORG', 'I-PERS', 'O'],
     "malach": ['B-CAMP', 'B-DATE', 'B-GHETTO', 'B-LOC', 'B-MISC', 'B-ORG', 'B-PER', 'I-CAMP', 'I-DATE', 'I-GHETTO', 'I-LOC', 'I-MISC', 'I-ORG', 'I-PER', 'O'],
+    "date_extraction": ['B-DATE', 'I-DATE', 'O'],
 }
 
 EHRI = Path("./ehri/")
-MALACH = Path("./review/training_data")
+MALACH = Path("./final/training_data")
 BOTH = [EHRI, MALACH]
 
 MODEL_MAP = {
+    # MalachNER paper
     "large": "FacebookAI/xlm-roberta-large",
     "ehri": "ehri-ner/xlm-roberta-large-ehri-ner-all",
-    "malach1": "ChrisBridges/xlm-r-malach-v5-1e-5",
+    # XLM-RoBERTa-malach paper
+    "malach1": "ufal/xlm-roberta-malach",  # formerly ChrisBridges/xlm-r-malach-v5-1e-5
     "malach2": "ChrisBridges/xlm-r-malach-v5-2e-5",
+    "holobert": "Isuri97/holo_mlm_bert",
+    # Miscellaneous experiments
+    "date_extraction": "ufal/xlm-roberta-malach",
     }
 
 EXPERIMENTS = {
@@ -54,7 +60,13 @@ EXPERIMENTS = {
     },
     "malach": {
         "finetune_ehri": {"train_dir": EHRI, "test_dir": EHRI, "tagset": "ehri"},
-    }
+    },
+    "holobert": {
+        "finetune_ehri": {"train_dir": EHRI, "test_dir": EHRI, "tagset": "ehri"},
+    },
+    "date_extraction": {
+        "date_extraction": {"train_dir": BOTH, "test_dir": EHRI, "tagset": "date_extraction"},
+    },
 }
 
 # Set up logging
@@ -64,17 +76,18 @@ logger = logging.getLogger(__name__)
 # Configuration
 def parse_args():
     parser = argparse.ArgumentParser(description="Train XLM-RoBERTa for NER")
-    parser.add_argument("--model_name", type=str, choices=MODEL_MAP.keys(), help="Pretrained model shortcut")
+    parser.add_argument("--experiment", type=str, choices=EXPERIMENTS.keys(), help="Experiment name")
     parser.add_argument("--output_dir", type=str, default="./results", help="Directory to save model and outputs")
-    parser.add_argument("--batch_size", type=int, default=16, help="Batch size for training and evaluation")
     parser.add_argument("--epochs", type=int, default=3, help="Number of training epochs")
     parser.add_argument("--learning_rate", type=float, default=3e-5, help="Learning rate")
     parser.add_argument("--train_ratio", type=float, default=0.8, help="Ratio of data to use for training")
+    parser.add_argument("--eval_model", type=Path, help="Local fine-tuned model path for per-language evaluation (overrides all previous arguments)")
+    parser.add_argument("--batch_size", type=int, default=16, help="Batch size for training and evaluation")
     return parser.parse_args()
 
 
 def read_conll_file(file_path: str, tagset: list) -> list[tuple[list[str], list[str]]]:
-    """Read CONLL format file and return list of (tokens, tags) tuples."""
+    """Read CoNLL format file and return list of (tokens, tags) tuples."""
     sentences = []
     tokens = []
     tags = []
@@ -94,14 +107,12 @@ def read_conll_file(file_path: str, tagset: list) -> list[tuple[list[str], list[
                     tag = parts[1]
 
                     # map between EHRI-NER and MalachNER
-                    if tag.endswith("AMBIG") or tag.endswith("TERM"):
-                        tag = "O"
-                    elif tag.endswith("MISC") and not "B-MISC" in tagset:
-                        tag = "O"
-                    elif tag.endswith("PER") and "B-PERS" in tagset:
+                    if tag.endswith("PER") and "B-PERS" in tagset:
                         tag = tag.replace("PER", "PERS")
                     elif tag.endswith("PERS") and "B-PER" in tagset:
                         tag = tag.replace("PERS", "PER")
+                    elif tag not in tagset:
+                        tag = "O"
 
                     tokens.append(token)
                     tags.append(tag)
@@ -152,9 +163,9 @@ def load_and_prepare_dataset(
     train_ratio: float = 0.8,
     seed: int = 42,
 ) -> tuple[DatasetDict, dict[str, int], dict[int, str]]:
-    """Load CONLL files and prepare HuggingFace dataset."""
+    """Load CoNLL files and prepare HuggingFace dataset."""
     
-    logger.info("Loading CONLL files...")
+    logger.info("Loading CoNLL files...")
 
     # Load files by split, optionally filter by language
     files = {split: [] for split in splits}
@@ -363,6 +374,64 @@ def train_model(
     return model, tokenizer, label2id, id2label
 
 
+def evaluate_per_language(local_model_path: Path, batch_size: int, data_path: Path):
+    # set device and defaults
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    logger.info(f"Using device: {device}")
+    label_list = TAGSETS["malach"]
+    num_labels = len(label_list)
+    languages = sorted(set(str(p)[:2] for p in data_path.iterdir()))
+
+    def compute_metrics_fn(p):
+        return compute_metrics(p, label_list)
+
+    # init local model
+    logger.info(f"Loading local tokenizer...")
+    model = None
+    tokenizer = AutoTokenizer.from_pretrained(local_model_path, local_files_only=True)
+    data_collator = DataCollatorForTokenClassification(tokenizer)
+    trainer = None
+    
+    for language in languages:
+        logger.info(f"Evaluating {language}")
+
+        dataset, label2id, id2label = load_and_prepare_dataset(
+            data_path, tokenizer, ["test"], label_list, language=language
+        )
+        test_dataset = dataset["test"]
+
+        if model is None:
+            logger.info(f"Loading model with {num_labels} labels...")
+
+            model = AutoModelForTokenClassification.from_pretrained(
+                local_model_path,
+                num_labels=num_labels,
+                id2label=id2label,
+                label2id=label2id,
+            )
+            model.to(device)
+
+        # Evaluate
+        if trainer is None:
+            logger.info(f"Initializing Trainer...")
+            trainer = Trainer(
+                model=model,
+                args=TrainingArguments(per_device_eval_batch_size=batch_size),
+                eval_dataset=test_dataset,
+                processing_class=tokenizer,
+                data_collator=data_collator,
+                compute_metrics=compute_metrics_fn,
+            )
+        else:
+            trainer.eval_dataset = test_dataset
+
+        logger.info(f"Evaluating on {language} test set...")
+        test_results = trainer.evaluate(test_dataset, metric_key_prefix="test")
+        test_report = test_results.pop("test_report")
+        logger.info(f"Eval results: {test_results}")
+        logger.info(f"\n{test_report}")
+
+
 if __name__ == "__main__":
     if torch.cuda.is_available():
         logger.info(f"GPU available: {torch.cuda.get_device_name(0)}")
@@ -371,22 +440,34 @@ if __name__ == "__main__":
         logger.warning("No GPU available. Training will be slow.")
 
     args = parse_args()
-    model_type = "malach" if "malach" in args.model_name else args.model_name
+
+    if args.eval_model:
+        logger.info("Per-language evaluating EHRI-NER")
+        evaluate_per_language(args.eval_model, args.batch_size, EHRI / "language_test_splits")
+
+        logger.info("Per-language evaluating MalachNER")
+        evaluate_per_language(args.eval_model, args.batch_size, MALACH)
+
+        exit(0)
+
+    model_type = "malach" if "malach" in args.experiment else args.experiment  # covers malach1 and malach2
     
     for exp_name, exp_config in EXPERIMENTS[model_type].items():
         for seed in (0, 42, 1234):
             if exp_config["train_dir"] is None and seed != 0:
                 continue
+            if exp_name == "date_extraction" and seed != 42:
+                pass
 
-            output_dir = Path(args.output_dir) / args.model_name
+            output_dir = Path(args.output_dir) / args.experiment
             handle=f"{exp_name}_{seed}"
             if (output_dir / f"{handle}.txt").exists():
-                logger.info(f"Skipping experiment {args.model_name}/{handle} (already exists)")
+                logger.info(f"Skipping experiment {args.experiment}/{handle} (already exists)")
                 continue
 
             logger.info(f"Running experiment: {exp_name}, seed: {seed}")
             train_model(
-                model_name=MODEL_MAP[args.model_name],
+                model_name=MODEL_MAP[args.experiment],
                 exp_config=exp_config,
                 output_dir=output_dir,
                 batch_size=args.batch_size,
