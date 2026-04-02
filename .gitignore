@@ -1,0 +1,13 @@
+# cache
+__pycache__/
+# datasets
+ehri/
+review/
+final/
+# model checkpoints
+*checkpoint*
+*safetensors
+*id2label.json
+*label2id.json
+*tokenizer.json
+*tokenizer_config.json
