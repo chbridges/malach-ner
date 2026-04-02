@@ -1,0 +1,10 @@
+{
+  "test_loss": 0.04489971324801445,
+  "test_precision": 0.8406123367852318,
+  "test_recall": 0.8279379157427937,
+  "test_f1": 0.8342269883824843,
+  "test_runtime": 24.9339,
+  "test_samples_per_second": 171.855,
+  "test_steps_per_second": 10.748,
+  "epoch": 3.0
+}

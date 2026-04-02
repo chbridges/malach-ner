@@ -1,0 +1,12 @@
+              precision    recall  f1-score   support
+
+        CAMP       0.58      0.29      0.39        97
+        DATE       0.21      0.36      0.26       193
+      GHETTO       0.88      0.37      0.52        60
+         LOC       0.59      0.53      0.56       808
+         ORG       0.22      0.52      0.31       149
+        PERS       0.70      0.67      0.68       473
+
+   micro avg       0.49      0.53      0.51      1780
+   macro avg       0.53      0.45      0.45      1780
+weighted avg       0.56      0.53      0.53      1780

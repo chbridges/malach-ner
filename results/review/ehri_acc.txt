@@ -1,0 +1,35 @@
+finetune_ehri
+PER			80.33 ± 1.43
+ORG			42.67 ± 1.43
+LOC			68.33 ± 1.43
+CAMP		60.33 ± 3.79
+GHETTO		81.00 ± 0.00
+DATE		71.33 ± 5.17
+micro avg	68.67 ± 1.43
+
+finetune_malach
+PER			89.33 ± 2.87
+ORG			70.33 ± 2.87
+LOC			90.67 ± 1.43
+CAMP		82.33 ± 2.87
+GHETTO		67.33 ± 37.29
+DATE		84.67 ± 3.79
+micro avg	85.67 ± 1.43
+
+frozen_ehri
+PER			87.00
+ORG			63.00
+LOC			82.00
+CAMP		70.00
+GHETTO		80.00
+DATE		84.00
+micro avg	81.00
+
+frozen_malach
+PER			81.00
+ORG			29.00
+LOC			72.00
+CAMP		62.00
+GHETTO		67.00
+DATE		55.00
+micro avg	67.00
