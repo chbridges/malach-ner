@@ -1,55 +1,55 @@
 both_ehri
-PER			86.00 ± 0.00
-ORG			60.33 ± 3.79
-LOC			82.33 ± 1.43
-CAMP		73.00 ± 7.45
-GHETTO		85.00 ± 0.00
-DATE		84.33 ± 3.79
-micro avg	81.33 ± 1.43
+PER			84.67 ± 5.74
+ORG			57.33 ± 15.97
+LOC			80.67 ± 5.74
+CAMP		72.67 ± 5.17
+GHETTO		83.67 ± 3.79
+DATE		81.33 ± 7.59
+micro avg	79.67 ± 5.74
 
 both_malach
-PER			89.67 ± 1.43
-ORG			64.67 ± 2.87
-LOC			88.67 ± 1.43
-CAMP		82.67 ± 1.43
-GHETTO		66.67 ± 11.20
-DATE		84.00 ± 4.30
-MISC		82.00 ± 2.48
-micro avg	83.33 ± 1.43
+PER			90.67 ± 1.43
+ORG			64.00 ± 4.30
+LOC			89.00 ± 2.48
+CAMP		83.00 ± 4.30
+GHETTO		72.67 ± 16.54
+DATE		84.67 ± 2.87
+MISC		82.33 ± 1.43
+micro avg	83.67 ± 1.43
 
 ehri_ehri
-PER			85.67 ± 2.87
-ORG			65.00 ± 4.30
+PER			86.00 ± 0.00
+ORG			63.67 ± 10.04
 LOC			82.00 ± 0.00
-CAMP		72.00 ± 2.48
-GHETTO		84.33 ± 3.79
-DATE		83.33 ± 1.43
-micro avg	81.33 ± 1.43
+CAMP		75.33 ± 3.79
+GHETTO		85.00 ± 0.00
+DATE		85.00 ± 2.48
+micro avg	81.67 ± 1.43
 
 ehri_malach
-PER			82.67 ± 1.43
-ORG			24.67 ± 2.87
-LOC			67.00 ± 2.48
-CAMP		64.00 ± 6.57
-GHETTO		68.33 ± 15.78
-DATE		60.67 ± 7.99
-micro avg	65.33 ± 1.43
+PER			82.33 ± 2.87
+ORG			26.00 ± 2.48
+LOC			65.33 ± 1.43
+CAMP		63.67 ± 5.17
+GHETTO		58.00 ± 4.30
+DATE		61.33 ± 5.17
+micro avg	64.33 ± 1.43
 
 malach_ehri
-PER			68.67 ± 1.43
-ORG			31.33 ± 1.43
-LOC			57.00 ± 2.48
-CAMP		41.00 ± 6.57
-GHETTO		53.33 ± 5.74
-DATE		27.33 ± 7.99
-micro avg	51.67 ± 2.87
+PER			71.67 ± 2.87
+ORG			34.00 ± 2.48
+LOC			59.67 ± 2.87
+CAMP		41.33 ± 9.40
+GHETTO		57.33 ± 5.17
+DATE		33.67 ± 17.45
+micro avg	55.00 ± 2.48
 
 malach_malach
-PER			89.33 ± 5.17
-ORG			69.00 ± 2.48
+PER			89.00 ± 0.00
+ORG			68.33 ± 1.43
 LOC			89.67 ± 1.43
-CAMP		80.67 ± 5.17
-GHETTO		61.00 ± 8.61
-DATE		84.00 ± 6.57
-MISC		84.67 ± 1.43
+CAMP		75.67 ± 12.75
+GHETTO		70.33 ± 7.59
+DATE		82.00 ± 0.00
+MISC		85.00 ± 2.48
 micro avg	84.67 ± 1.43

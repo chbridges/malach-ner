@@ -1,1 +1,1 @@
-{"B-CAMP": 0, "B-DATE": 1, "B-GHETTO": 2, "B-LOC": 3, "B-MISC": 4, "B-ORG": 5, "B-PER": 6, "I-CAMP": 7, "I-DATE": 8, "I-GHETTO": 9, "I-LOC": 10, "I-MISC": 11, "I-ORG": 12, "I-PER": 13, "O": 14}
+{"B-CAMP": 0, "B-DATE": 1, "B-GHETTO": 2, "B-LOC": 3, "B-ORG": 4, "B-PERS": 5, "I-CAMP": 6, "I-DATE": 7, "I-GHETTO": 8, "I-LOC": 9, "I-ORG": 10, "I-PERS": 11, "O": 12}

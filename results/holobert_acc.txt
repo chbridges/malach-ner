@@ -1,0 +1,8 @@
+finetune_ehri
+PER			77.00 ± 0.00
+ORG			56.67 ± 1.43
+LOC			75.33 ± 1.43
+CAMP		72.00 ± 0.00
+GHETTO		82.00 ± 4.30
+DATE		81.67 ± 1.43
+micro avg	75.00 ± 0.00
